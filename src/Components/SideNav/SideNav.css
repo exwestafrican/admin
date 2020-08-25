@@ -1,0 +1,73 @@
+.side-nav {
+  background-color: rgb(255, 255, 255);
+  min-width: 250px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.side-nav-functions {
+  height: 65%;
+}
+
+.side-functions-headers {
+  padding: 5% 15px 3% 15px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.side-nav-functions-ul {
+  list-style: none;
+  width: 100%;
+  text-align: left;
+}
+
+.side-nav-functions-li {
+  display: list-item;
+  padding: 10px 25%;
+}
+
+.side-nav-functions-li a {
+  cursor: pointer;
+}
+
+.side-nav-functions-li a:hover {
+  color: rgb(153, 32, 50);
+  transition: color 0.32s ease-out;
+}
+
+.side-nav-functions-li.active {
+  background-color: rgb(252, 239, 241);
+  color: rgb(153, 32, 50);
+  width: 98%;
+  border-radius: 0 40px 40px 0;
+}
+
+.side-nav-logo {
+  height: 20%;
+  background: purple;
+}
+.side-nav-profile {
+  display: flex;
+  height: 15%;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 15px 15px 15px;
+  cursor: pointer;
+}
+
+.side-nav-profile .round-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: fill;
+}
+
+.side-nav-profile span {
+  margin-left: 15px;
+}
+
+.side-nav-profile span:hover {
+  color: rgb(153, 32, 50);
+}
