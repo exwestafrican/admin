@@ -1,0 +1,59 @@
+.form-page {
+  display: flex;
+  justify-content: space-between;
+  gap: 1em;
+}
+
+.form-section {
+  width: 50%;
+  display: flex;
+  align-items: center;
+}
+.form-section div {
+  width: 96%;
+}
+.form-section__form {
+  width: 100%;
+}
+
+.auth {
+  border: none;
+  padding: 0.5em 2em;
+  border-radius: 0.2em;
+  color: #fff;
+}
+
+.sign-in {
+  opacity: 0.8;
+  background-color: rgb(153, 32, 50);
+  transition: opacity 250ms linear;
+}
+
+.sign-in:hover,
+.sign-in:focus {
+  color: #fff;
+  opacity: 1;
+}
+
+.sign-in-disabled {
+  opacity: 0.8;
+  background-color: rgb(153, 32, 50);
+}
+
+.remove {
+  display: none;
+}
+
+@media (max-width: 60em) {
+  .form-page {
+    justify-content: space-between;
+    gap: 1em;
+    flex-direction: column;
+  }
+
+  .form-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
