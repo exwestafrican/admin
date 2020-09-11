@@ -1,7 +1,25 @@
 {
-    "extends": "react-app",
-    "plugins": ["prettier"],
-    "rules": {
-      "prettier/prettier": "error"
+  "extends": [
+    "standard",
+    "plugin:flowtype/recommended",
+    "plugin:react/recommended",
+    "plugin:unicorn/recommended",
+    "prettier",
+    "prettier/babel",
+    "prettier/flowtype",
+    "prettier/react",
+    "prettier/standard",
+    "prettier/unicorn"
+  ],
+  "plugins": ["babel", "flowtype", "react", "standard", "unicorn"],
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
     }
+  },
+  "env": {
+    "es6": true,
+    "node": true
   }
+}
