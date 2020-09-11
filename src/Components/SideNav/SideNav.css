@@ -1,73 +1,71 @@
-.side-nav {
-  background-color: rgb(255, 255, 255);
-  min-width: 250px;
-  min-height: 100vh;
+.side-nav-main {
   display: flex;
-  justify-content: space-between;
-  flex-direction: column;
+  justify-content: space-around;
 }
 
-.side-nav-functions {
-  height: 65%;
+.side-nav-main .side-nav {
+  width: 15%;
 }
 
-.side-functions-headers {
-  padding: 5% 15px 3% 15px;
-  font-size: 1rem;
-  cursor: pointer;
+.side-nav-main .content {
+  width: 80%;
 }
 
-.side-nav-functions-ul {
+.notify > * > * {
+  color: rgb(29, 161, 242, 1);
+}
+
+.side-nav__options > * > * {
+  color: #333;
+}
+
+.side-nav__icons {
+  vertical-align: middle;
+  margin-right: 1em;
+}
+
+.side-nav__options {
+  margin: 1em 0;
+}
+
+.side-nav__options__list {
   list-style: none;
-  width: 100%;
-  text-align: left;
-}
-
-.side-nav-functions-li {
-  display: list-item;
-  padding: 10px 25%;
-}
-
-.side-nav-functions-li a {
+  padding: 1em 0.5em;
   cursor: pointer;
 }
-
-.side-nav-functions-li a:hover {
-  color: rgb(153, 32, 50);
-  transition: color 0.32s ease-out;
+.side-nav__options__list a:hover {
+  color: rgb(29, 161, 242, 1);
+  text-decoration: none;
 }
 
-.side-nav-functions-li.active {
+.side-nav__options__list ion-icon {
+  margin-right: 0.5em;
+}
+
+.active-item {
   background-color: rgb(252, 239, 241);
+}
+.active-item > * > * {
   color: rgb(153, 32, 50);
-  width: 98%;
-  border-radius: 0 40px 40px 0;
 }
 
-.side-nav-logo {
-  height: 20%;
-  background: purple;
-}
-.side-nav-profile {
-  display: flex;
-  height: 15%;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0 15px 15px 15px;
-  cursor: pointer;
-}
-
-.side-nav-profile .round-image {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  object-fit: fill;
-}
-
-.side-nav-profile span {
-  margin-left: 15px;
-}
-
-.side-nav-profile span:hover {
-  color: rgb(153, 32, 50);
+@media (max-width: 63em) {
+  .side-nav__options span {
+    display: none;
+  }
+  .side-nav-main .side-nav {
+    width: 1%;
+    margin: 0;
+  }
+  .side-nav__icons {
+    vertical-align: middle;
+    margin-right: 0;
+  }
+  .side-nav__options__list {
+    margin: 1.5em 0;
+    list-style: none;
+  }
+  .active-item {
+    background-color: var(--my-background);
+  }
 }

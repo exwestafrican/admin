@@ -1,0 +1,23 @@
+.auth {
+  border: none;
+  padding: 0.5em 2em;
+  border-radius: 0.2em;
+  color: #fff;
+}
+
+.sign-in {
+  opacity: 0.8;
+  background-color: rgb(153, 32, 50);
+  transition: opacity 250ms linear;
+}
+
+.sign-in:hover,
+.sign-in:focus {
+  color: #fff;
+  opacity: 1;
+}
+
+.sign-in-disabled {
+  opacity: 0.8;
+  background-color: rgb(153, 32, 50);
+}

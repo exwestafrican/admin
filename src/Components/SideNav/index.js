@@ -1,77 +1,68 @@
 import React from "react";
-import "./SideNav.css";
+import "./sideNav.css";
+import { Link } from "react-router-dom";
+import url from "../../Path";
+import { useHistory } from "react-router-dom";
 
 const SideNav = () => {
+  let history = useHistory();
+  const { orders, dashboard, resturants, refunds } = url;
+
+  const displayActive = (path) => {
+    const active = history.location.pathname === path ? "active-item" : null;
+    return active;
+  };
+
   return (
     <nav className="side-nav">
-      <div className="side-nav-logo"></div>
+      <ul className="side-nav__options">
+        <li className={`side-nav__options__list  ${displayActive(dashboard)}`}>
+          <Link to={dashboard}>
+            <ion-icon
+              name="home-outline"
+              className="side-nav__icons"
+            ></ion-icon>
+            <span className="side-nav__options">Dashboard</span>
+          </Link>
+        </li>
 
-      <div className="side-nav-functions">
-        <h3 className="side-functions-headers">STATISTICS</h3>
-        <div className="side-nav-functions-menu">
-          <ul className="side-nav-functions-ul">
-            <li className="side-nav-functions-li ">
-              {" "}
-              <a>Overview</a>
-            </li>
-            <li className="side-nav-functions-li ">
-              {" "}
-              <a>Orders</a>
-            </li>
-            <li className="side-nav-functions-li">
-              {" "}
-              <a>Deliveries</a>
-            </li>
-          </ul>
-        </div>
+        <li
+          className={`side-nav__options__list notify ${displayActive(orders)}`}
+        >
+          <Link>
+            <ion-icon
+              name="fast-food-outline"
+              className="side-nav__icons"
+            ></ion-icon>
 
-        <h3 className="side-functions-headers">NOTIFICATIONS</h3>
-        <div className="side-nav-functions-menu">
-          <ul className="side-nav-functions-ul">
-            <li className="side-nav-functions-li active">
-              {" "}
-              <a>Orders</a>
-            </li>
-            <li className="side-nav-functions-li">
-              {" "}
-              <a>Resturants</a>
-            </li>
-            <li className="side-nav-functions-li">
-              {" "}
-              <a>Transactions</a>
-            </li>
-          </ul>
-        </div>
+            <span className="side-nav__options">Orders </span>
+          </Link>
+        </li>
 
-        <h3 className="side-functions-headers">SETTINGS</h3>
-        <div className="side-nav-functions-menu">
-          <ul className="side-nav-functions-u" l>
-            <li className="side-nav-functions-li">
-              {" "}
-              <a>Add Resturants</a>
-            </li>
-            <li className="side-nav-functions-li">
-              {" "}
-              <a>Add Food Items</a>
-            </li>
-            <li className="side-nav-functions-li">
-              {" "}
-              <a>Refunds</a>
-            </li>
-          </ul>
-        </div>
-      </div>
+        <li className={`side-nav__options__list  ${displayActive(resturants)}`}>
+          <Link>
+            <ion-icon
+              name="restaurant-outline"
+              className="side-nav__icons"
+            ></ion-icon>
+            <span className="side-nav__options">Resturants</span>
+          </Link>
+        </li>
 
-      <div className="side-nav-profile">
-        <img
-          src="img/profile%20pic.jpg"
-          alt="user-name"
-          className="round-image"
-        />
-        <span>Godis Nkwobi</span>
-      </div>
+        <li className={`side-nav__options__list  ${displayActive(refunds)}`}>
+          <Link>
+            <ion-icon
+              name="wallet-outline"
+              className="side-nav__icons"
+            ></ion-icon>
+            <span className="side-nav__options">Refunds</span>
+          </Link>
+        </li>
+      </ul>
     </nav>
   );
 };
+
+// use react memo to keeo this from rerendering
 
 export default SideNav;
