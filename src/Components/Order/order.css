@@ -1,0 +1,13 @@
+.table-hover td {
+  cursor: pointer;
+}
+
+.unread {
+  /* color:rgb(29, 161, 242); */
+  color: #a1173c;
+  vertical-align: middle;
+}
+.read {
+  color: #008951;
+  vertical-align: middle;
+}

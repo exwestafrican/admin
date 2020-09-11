@@ -1,0 +1,19 @@
+.img-section {
+  width: 50%;
+}
+
+.img-section___image {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+}
+
+@media (max-width: 60em) {
+  .img-section___image {
+    height: 50%;
+    object-fit: cover;
+  }
+  .img-section {
+    width: 100%;
+  }
+}
