@@ -11,3 +11,8 @@
   color: #008951;
   vertical-align: middle;
 }
+
+.table-hover tbody tr:hover td,
+.table-hover tbody tr:hover th {
+  background-color: rgb(241, 222, 220);
+}

@@ -1,0 +1,39 @@
+.resturants-content {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.resturant {
+  max-width: 18em;
+  margin: 1em;
+  cursor: pointer;
+ 
+}
+
+.resturant__img {
+  width: 100%;
+  max-height: 13em;
+  object-fit: cover;
+}
+
+.resturant__info__name {
+  text-transform: uppercase;
+}
+
+.resturant__status {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.resturant__status__toggle {
+  cursor: pointer;
+}
+
+.on {
+  color: #008951;
+}
+.off {
+  color: #a1173c;
+}

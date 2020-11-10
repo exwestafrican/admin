@@ -1,0 +1,12 @@
+.loading{
+    width: 100%;
+    background-color:rgba(243, 243, 243, 0.932);
+    height: 4.3rem;
+}
+
+.center-loading{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

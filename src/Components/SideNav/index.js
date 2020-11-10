@@ -1,68 +1,69 @@
 import React from "react";
 import "./sideNav.css";
-import { Link } from "react-router-dom";
+
 import url from "../../Path";
-import { useHistory } from "react-router-dom";
+
+import SideNavLinks from "./component";
 
 const SideNav = () => {
-  let history = useHistory();
-  const { orders, dashboard, resturants, refunds } = url;
+  const {
+    dashboard,
+    resturants,
+    refunds,
+    newOrders,
+    ongoingOrders,
+    completedOrders,
+  } = url;
 
-  const displayActive = (path) => {
-    const active = history.location.pathname === path ? "active-item" : null;
-    return active;
-  };
-
+  const navLinks = [
+    // {
+    //   url: dashboard,
+    //   iconName: "home-outline",
+    //   linkName: "Dashboard",
+    // },
+    {
+      url: newOrders,
+      iconName: "pizza-outline",
+      linkName: "New Orders",
+    },
+    {
+      url: ongoingOrders,
+      iconName: "document-outline",
+      linkName: "Processing",
+    },
+    {
+      url: completedOrders,
+      iconName: "checkmark-outline",
+      linkName: "Completed",
+    },
+    {
+      url: resturants,
+      iconName: "restaurant-outline",
+      linkName: "Resturants",
+    },
+    // {
+    //   url: refunds,
+    //   iconName: "wallet-outline",
+    //   linkName: "Refunds",
+    // },
+  ];
+  console.log("Rerendering");
   return (
     <nav className="side-nav">
       <ul className="side-nav__options">
-        <li className={`side-nav__options__list  ${displayActive(dashboard)}`}>
-          <Link to={dashboard}>
-            <ion-icon
-              name="home-outline"
-              className="side-nav__icons"
-            ></ion-icon>
-            <span className="side-nav__options">Dashboard</span>
-          </Link>
-        </li>
-
-        <li
-          className={`side-nav__options__list notify ${displayActive(orders)}`}
-        >
-          <Link>
-            <ion-icon
-              name="fast-food-outline"
-              className="side-nav__icons"
-            ></ion-icon>
-
-            <span className="side-nav__options">Orders </span>
-          </Link>
-        </li>
-
-        <li className={`side-nav__options__list  ${displayActive(resturants)}`}>
-          <Link>
-            <ion-icon
-              name="restaurant-outline"
-              className="side-nav__icons"
-            ></ion-icon>
-            <span className="side-nav__options">Resturants</span>
-          </Link>
-        </li>
-
-        <li className={`side-nav__options__list  ${displayActive(refunds)}`}>
-          <Link>
-            <ion-icon
-              name="wallet-outline"
-              className="side-nav__icons"
-            ></ion-icon>
-            <span className="side-nav__options">Refunds</span>
-          </Link>
-        </li>
+        {navLinks.map((links) => (
+          <SideNavLinks
+            key={links.linkName}
+            url={links.url}
+            iconName={links.iconName}
+            linkName={links.linkName}
+          />
+        ))}
       </ul>
     </nav>
   );
 };
 
-// use react memo to keeo this from rerendering
+// don't use react.memo so active tag appears
 
 export default SideNav;

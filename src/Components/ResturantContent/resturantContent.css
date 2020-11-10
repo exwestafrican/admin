@@ -1,0 +1,18 @@
+.span-navigation {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.span-navigation__button {
+  background-color: rgb(153, 32, 50);
+  color: rgb(235, 228, 228);
+  opacity: 0.8;
+}
+
+.span-navigation__button:hover {
+  opacity: 1;
+  color: rgb(235, 228, 228);
+  background-color: rgb(153, 32, 50);
+}
