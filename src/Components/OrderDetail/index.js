@@ -17,6 +17,7 @@ class OrderDetail extends React.Component {
       requestId: "Loading...",
       paymentMethod: "Loading...",
       email: "Loading...",
+      restaurantName:"Loading...",
       orderList: [],
       subTotal: 0,
       fee: 0,
@@ -39,8 +40,9 @@ class OrderDetail extends React.Component {
           orderList,
           subTotal,
           fee,
+          restaurantName
         } = results.data.response[0];
-
+          
         this.setState({
           address,
           schoolName,
@@ -49,6 +51,7 @@ class OrderDetail extends React.Component {
           requestId,
           paymentMethod,
           email,
+          restaurantName,
           orderList,
           subTotal,
           fee,
@@ -69,6 +72,7 @@ class OrderDetail extends React.Component {
           schoolName={this.state.schoolName}
           paymentMethod={this.state.paymentMethod}
           email={this.state.email}
+          restaurantName={this.state.restaurantName}
         />
         <div className="scrollable product-details">
           <div className="make-parallel">

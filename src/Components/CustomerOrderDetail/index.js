@@ -8,6 +8,7 @@ const CustomerOrderDetail = ({
   requestId,
   paymentMethod,
   email,
+  restaurantName
 }) => {
   return (
     <section className="customer-details">
@@ -20,6 +21,7 @@ const CustomerOrderDetail = ({
           <p> Phone Number </p>
           <p>Payment Method</p>
           <p>Email</p>
+          <p>Resturant</p>
         </div>
         <div className="text-align-right">
           <p>{requestId}</p>
@@ -29,6 +31,7 @@ const CustomerOrderDetail = ({
           <p> {phoneNumber} </p>
           <p>{paymentMethod}</p>
           <p>{email}</p>
+          <p>{restaurantName}</p>
         </div>
       </div>
     </section>
