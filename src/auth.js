@@ -2,8 +2,9 @@ import url, { BASE_URL } from "./Path";
 import { localStorageDict } from "./localStorage";
 import jwt from "jsonwebtoken";
 import { socket } from "./sockets";
+import { generalErrorMessage } from "./utils";
 
-const { ApiLogin, orders } = url;
+const { ApiLogin, newOrders } = url;
 const {
   RemoveFromStorage,
   getItemFromLocalStorage,
@@ -14,7 +15,7 @@ const userToken = "userToken";
 
 class User {
   login(email, password, sucess, failed) {
-    //   set this.isAuthenticated to true
+    // set this.isAuthenticated to true
     const credentials = {
       email,
       password,
@@ -41,19 +42,20 @@ class User {
             { expiresIn: expire }
           );
           storeInStorage(userToken, token);
-          sucess(orders);
+          sucess(newOrders);
         } else if (r.status === "error") {
-          failed();
+          failed("invlaid email or password");
         }
-      });
+      })
+      .catch((r) => failed(generalErrorMessage));
   }
 
   logout(cb) {
     RemoveFromStorage(userToken);
     // on logout stop server events
-    cb();
     // on logout close connection
     socket.disconnect();
+    cb();
   }
 
   getDetails(attribute) {
@@ -69,7 +71,7 @@ class User {
   }
 
   authenticated() {
-    //   check if user has token in local storage
+    // check if user has token in local storage
     // if yes, send a post request to verify if token is valid
     // else user is not authennticated
     if (ItemInStorage(userToken)) {
