@@ -24,6 +24,11 @@ function App() {
           exact
           component={OrderPage}
         />
+         <ProtectedRoute
+          path={url.acceptedOrders}
+          exact
+          component={OrderPage}
+        />
         <ProtectedRoute
           path={url.resturants}
           exact

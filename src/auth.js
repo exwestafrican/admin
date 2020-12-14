@@ -20,7 +20,7 @@ class User {
       email,
       password,
     };
-    console.log("base_url",process.env.REACT_APP_DEVELOPMENT_ENVIROMENT)
+   
     const request = new Request(BASE_URL + ApiLogin, {
       method: "POST",
       headers: { "Content-Type": "application/json" },

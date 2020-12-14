@@ -26,3 +26,18 @@ export const returnJson = (fetchRequest) => {
   }
   return fetchRequest.json();
 };
+
+
+
+export const formatTime=(time)=>{
+  const timeObj = new Date(time);
+  return timeObj.getHours()+":"+timeObj.getMinutes()
+}
+
+export const orderStatus = {
+  accepted:"accepted",
+  completed:"completed",
+  payonDelivery:"pending",
+  paymentProcessing:"processing",
+  delivered:"delivered"
+}

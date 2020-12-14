@@ -1,6 +1,6 @@
 import React from "react";
 import "./order.css";
-import { formatDateTime } from "../../utils";
+import { formatDateTime,formatTime } from "../../utils";
 import { useHistory } from "react-router-dom";
 import url from "../../Path";
 
@@ -14,6 +14,7 @@ const Order = ({
   phoneNumber,
   status,
   schoolName,
+
 }) => {
  
   const total = subTotal + fee;
@@ -21,6 +22,7 @@ const Order = ({
   const location = address;
   const history = useHistory();
   const { newOrders } = url;
+  const time = formatTime(createdAt)
 
   return (
     <tr
@@ -35,6 +37,7 @@ const Order = ({
       <td>{schoolName}</td>
       <td>{total}</td>
       <td>{date}</td>
+      <td>{time}</td>
     </tr>
   );
 };

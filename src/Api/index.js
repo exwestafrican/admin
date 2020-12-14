@@ -7,9 +7,17 @@ const {
   apiOrders,
   apiCompletedOrders,
   apiProcessingOrders,
-  apiItem
+  apiAcceptedOrders,
+  apiItem,
+  apiStatus
 } = url;
 
+const config = { 
+  method: "POST",
+  headers: {
+  "Content-Type": "application/json",
+},
+}
 export const fetchAllResturants = async () => {
   const resturants = await fetch(BASE_URL + "/v1/restaurants", {
     method: "GET",
@@ -59,7 +67,7 @@ const genericOrderFetch = async (apiUrl) => {
     return orders.json();
   }
   // just return empty data
-  console.log("error");
+  // console.log("error");
   return {
     data: {
       response: [],
@@ -82,6 +90,11 @@ export const fetchOngoingOrders = async () => {
   return data;
 };
 
+export const fetchAcceptedOrders = async ()=>{
+  const data = await genericOrderFetch(apiAcceptedOrders)
+  return data
+}
+
 
 export const updateItemStatus = async (item)=>{
   const response = await fetch (BASE_URL +apiItem,{
@@ -94,4 +107,17 @@ export const updateItemStatus = async (item)=>{
  if (response.ok){
    return response.json();
  }
+}
+
+export const changeOrderStatus = async(orderRefrence,changeStatusTo,successCallback)=>{
+  const data = {
+    requestId:orderRefrence,
+    status:changeStatusTo
+  }
+  const response = await fetch(BASE_URL + apiStatus,{
+    ...config,body: JSON.stringify(data)
+  })
+  if (response.ok){
+    successCallback()
+  }
 }

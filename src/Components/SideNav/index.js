@@ -12,6 +12,7 @@ const SideNav = () => {
     refunds,
     newOrders,
     ongoingOrders,
+    acceptedOrders,
     completedOrders,
   } = url;
 
@@ -32,10 +33,16 @@ const SideNav = () => {
       linkName: "Processing",
     },
     {
+      url: acceptedOrders,
+      iconName: "file-tray-outline",
+      linkName: "Accepted",
+    },
+    {
       url: completedOrders,
       iconName: "checkmark-outline",
       linkName: "Completed",
     },
+    
     {
       url: resturants,
       iconName: "restaurant-outline",

@@ -1,34 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import CustomerOrderDetail from "../CustomerOrderDetail";
 import "./orderDetail.css";
-import { fetchOrderDetail } from "../../Api";
+import { fetchOrderDetail, changeOrderStatus } from "../../Api";
 
-import { withRouter } from "react-router-dom";
+import { withRouter, useRouteMatch } from "react-router-dom";
 import Recipt from "../Reciept";
+import { orderStatus } from "../../utils";
 
-class OrderDetail extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      address: "Loading...",
-      schoolName: "Loading...",
-      firstName: "Loading...",
-      phoneNumber: "Loading...",
-      requestId: "Loading...",
-      paymentMethod: "Loading...",
-      email: "Loading...",
-      restaurantName:"Loading...",
-      orderList: [],
-      subTotal: 0,
-      fee: 0,
-    };
-  }
+const OrderDetail = () => {
+  const requestId = useRouteMatch().params.id;
+  const [state, setState] = useState({
+    address: "Loading...",
+    schoolName: "Loading...",
+    firstName: "Loading...",
+    phoneNumber: "Loading...",
+    requestId: "Loading...",
+    paymentMethod: "Loading...",
+    email: "Loading...",
+    restaurantName: "Loading...",
+    status: "",
+    orderList: [],
+    subTotal: 0,
+    fee: 0,
+    isLoading: true,
+  });
 
-  componentDidMount() {
-    const requestId = this.props.match.params.id;
+  useEffect(() => {
     const getOrderDetail = async (id) => {
-      const results = await fetchOrderDetail(id);
-      if (results.status == "success") {
+      const response = await fetchOrderDetail(id);
+      if (response.status == "success") {
         const {
           address,
           schoolName,
@@ -40,10 +40,10 @@ class OrderDetail extends React.Component {
           orderList,
           subTotal,
           fee,
-          restaurantName
-        } = results.data.response[0];
-          
-        this.setState({
+          restaurantName,
+          status,
+        } = response.data.response[0];
+        setState({
           address,
           schoolName,
           firstName,
@@ -55,42 +55,84 @@ class OrderDetail extends React.Component {
           orderList,
           subTotal,
           fee,
+          status,
+          isLoading: false,
         });
       }
     };
     getOrderDetail(requestId);
-  }
+  }, []);
 
-  render() {
-    return (
-      <main className="content my-container top-margin split-content">
-        <CustomerOrderDetail
-          address={this.state.address}
-          firstName={this.state.firstName}
-          phoneNumber={this.state.phoneNumber}
-          requestId={this.state.requestId}
-          schoolName={this.state.schoolName}
-          paymentMethod={this.state.paymentMethod}
-          email={this.state.email}
-          restaurantName={this.state.restaurantName}
-        />
-        <div className="scrollable product-details">
+  const updateOrderStatus = (orderRefrence, status) => {
+    console.log("here")
+    setState({ ...state, isLoading: true });
+    console.log(status)
+    changeOrderStatus(orderRefrence, status, success);
+  };
+
+  const success = () => {
+    setState({ ...state, isLoading: false });
+  };
+
+  const DisplayButton = ({ status }) => {
+    switch (status) {
+      case orderStatus.accepted:
+        return (
           <div className="make-parallel">
-            <button className="btn btn-success">Approve</button>
+            <button
+              className="btn btn-success"
+              onClick={() =>
+                updateOrderStatus(state.requestId, orderStatus.completed)
+              }
+            >
+              {state.isLoading ? "LOADING..." : "COMPLETED"}
+            </button>
+            <button className="btn btn-outline-dark">Refund</button>
+          </div>
+        );
+
+      case orderStatus.completed:
+        return <div className="make-parallel"></div>;
+
+      default:
+        return (
+          <div className="make-parallel">
+            <button
+              className="btn btn-success"
+              onClick={() =>
+                updateOrderStatus(state.requestId, orderStatus.accepted)
+              }
+            >
+              {state.isLoading ? "LOADING..." : "ACCEPTED"}
+            </button>
             <button className="btn btn-outline-dark">Reject</button>
           </div>
-          {/* <div className="make-parallel" style="justify-content: flex-end;">
-            <button className="btn btn-danger">Refund</button>
-        </div>  */}
-          <Recipt
-            orderList={this.state.orderList}
-            subTotal={this.state.subTotal}
-            fee={this.state.fee}
-          />
-        </div>
-      </main>
-    );
-  }
-}
+        );
+    }
+  };
+
+  return (
+    <main className="content my-container top-margin split-content">
+      <CustomerOrderDetail
+        address={state.address}
+        firstName={state.firstName}
+        phoneNumber={state.phoneNumber}
+        requestId={state.requestId}
+        schoolName={state.schoolName}
+        paymentMethod={state.paymentMethod}
+        email={state.email}
+        restaurantName={state.restaurantName}
+      />
+      <div className="scrollable product-details">
+        <DisplayButton status={state.status} />
+        <Recipt
+          orderList={state.orderList}
+          subTotal={state.subTotal}
+          fee={state.fee}
+        />
+      </div>
+    </main>
+  );
+};
 
 export default withRouter(OrderDetail);
